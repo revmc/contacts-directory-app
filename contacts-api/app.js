@@ -8,6 +8,17 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+// load mongoose package
+var mongoose = require('mongoose');
+
+// use native Node promises
+mongoose.Promise = global.Promise;
+
+// connect to MongoDB
+mongoose.connect('mongodb://localhost/contacts-api')
+	.then(() => console.log('Connection successful!'))
+	.catch((err) => console.error(err));
+
 var app = express();
 
 // view engine setup
